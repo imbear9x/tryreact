@@ -4,7 +4,16 @@
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+  height: 15vh;
+}
+.App-content{
+  height: 60vh;
+  width: 60vw;
+  margin-left: 20%;
+  background-color: white;
+  border-style: groove;
+  border-color: black;
+  text-align: center;
 }
 
 .App-header {
@@ -20,6 +29,13 @@
 
 .App-link {
   color: #61dafb;
+}
+.Check-box{
+  background-color: whitesmoke;
+  border-style: groove;
+  outline: none;
+  width: 10%;
+  height: 9%;
 }
 
 @keyframes App-logo-spin {
