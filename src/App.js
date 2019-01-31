@@ -1,40 +1,43 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import logo from './logo.svg';
-import './App.css';
 import Check from './checkbox.js';
-let turn = "X";
-class App extends PureComponent {
+import './App.css';
+
+class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      count: 0,
+      count: 0
     };
+    this.source = [];
   }
 
-  bienhinh = () => {
-    console.log('Goi lai');
-    let child = [];
-    var possible = "XO";
-    for (let index = 0; index < 100; index++) {
-      console.log('Vao FOR ', index);
-      const result = possible.charAt(Math.floor(Math.random() * possible.length));
-      child.push(<Check  aValue={result} func={this.tangdiem} />);
+  handleAddPoint = (bool) => {
+    if (bool === true)
+      this.setState({ count: this.state.count + 1 });
+    if (bool === false)
+      this.setState({ count: this.state.count - 1 });
+  }
+
+  componentWillMount() {
+    const possible = "XO";
+    let i = 0;
+    while (i < 100) {
+      this.source.push(possible.charAt(Math.floor(Math.random() * possible.length)));
+      i++;
     }
-    return child;
   }
-  tangdiem = (bool) => {
-    console.log('BOOL: ________ ', bool);
-    if (bool === true) this.setState({ count: this.state.count + 1 });
-    if (bool === false) this.setState({ count: this.state.count - 1 });
-  }
-  
   render() {
     return (
       <div className="App">
         <img src={logo} className="App-logo" alt="logo" />
         <h1 children={this.state.count}></h1>
         <div className="App-content" id="hihi">
-          { this.bienhinh() }
+          {
+            this.source.map((result, key) =>
+              <Check key={key} aValue={result} func={this.handleAddPoint} />
+            )
+          }
         </div>
       </div>
     );
